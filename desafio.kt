@@ -1,21 +1,34 @@
-// [Template no Kotlin Playground](https://pl.kotl.in/WcteahpyN)
+enum class Stack { FRONTEND, BACKEND, FULLSTACK }
+enum class Level { BEGINNER, INTERMEDIARY, ADVANCED}
+data class Course(val name : String, val level : Level, val stack : Stack)
+data class User(val userName: String, val email: String)
+data class Bootcamp(val name:String, var courses : List<Course>){
+    val subscribed = mutableListOf<User>()
 
-enum class Nivel { BASICO, INTERMEDIARIO, DIFICIL }
-
-class Usuario
-
-data class ConteudoEducacional(var nome: String, val duracao: Int = 60)
-
-data class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) {
-
-    val inscritos = mutableListOf<Usuario>()
-    
-    fun matricular(usuario: Usuario) {
-        TODO("Utilize o parâmetro $usuario para simular uma matrícula (usar a lista de $inscritos).")
-    }
+    fun enrollUser(user : User) = subscribed.add(user)
+    fun enrollUsers(users : Collection<User>) = subscribed.addAll(users);
 }
 
-fun main() {
-    TODO("Analise as classes modeladas para este domínio de aplicação e pense em formas de evoluí-las.")
-    TODO("Simule alguns cenários de teste. Para isso, crie alguns objetos usando as classes em questão.")
+fun main(){
+    val user1 = User("leandrosouzants", "leandroszsnts@teste.com")
+    val user2 = User("carlosantonio", "carlosantonio@teste.com")
+
+    val users = listOf(
+            User("rafaela04", "rafaelamartins@teste.com"),
+            User("josue333", "josue@teste.com"),
+            User("antonio", "antonio@teste.com")
+    )
+
+
+    val couses = listOf(Course("Fundamental Kotlin", Level.BEGINNER, Stack.BACKEND))
+    val bootcamp = Bootcamp("Kotlin Developper", couses)
+
+    //matricula
+    bootcamp.enrollUser(user1)
+    bootcamp.enrollUser(user2)
+    bootcamp.enrollUsers(users)
+
+    println("Subscribed Users ${bootcamp.name}: ")
+    println(bootcamp.subscribed.map { u -> "UserName: ${u.userName}, Email: ${u.email} "})
+
 }
