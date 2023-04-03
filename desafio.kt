@@ -26,6 +26,7 @@ fun main(){
     //matricula
     bootcamp.enrollUser(user1)
     bootcamp.enrollUser(user2)
+
     bootcamp.enrollUsers(users)
 
     println("Subscribed Users ${bootcamp.name}: ")
